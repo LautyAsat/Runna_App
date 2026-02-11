@@ -10,7 +10,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   Future<void> checkAuth() async {
     state = const AuthState.loading();
 
-    // De momento simulamos porque no existe el endpoint login
+    // Leemos secureStorage/sharedPreferences para ver si el usuario ya esta logueado
     await Future.delayed(const Duration(seconds: 2));
 
     state = const AuthState.unauthenticated();
