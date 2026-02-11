@@ -1,10 +1,15 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:runna/presentation/state/auth_state.dart';
 
-class AuthNotifier extends StateNotifier<AuthState> {
-  // Estado inicial
-  AuthNotifier() : super(const AuthState.initial()) {
-    checkAuth();
+part 'auth_provider.g.dart';
+
+@riverpod
+class AuthNotifier extends _$AuthNotifier {
+  @override
+  AuthState build() {
+    // Inicializamos verificando autenticación
+    Future.microtask(() => checkAuth());
+    return const AuthState.initial();
   }
 
   Future<void> checkAuth() async {
@@ -23,10 +28,4 @@ class AuthNotifier extends StateNotifier<AuthState> {
   void logout() {
     state = const AuthState.unauthenticated();
   }
-
 }
-
-// Este el provider (tipo context en react) para poder acceder desde cualquier widget
-final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
-  return AuthNotifier();
-});
