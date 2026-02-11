@@ -29,7 +29,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final password = _passwordController.text;
 
     if (username.isNotEmpty && password.isNotEmpty) {
-      ref.read(authProvider.notifier).login(username);
+      ref.read(authNotifierProvider.notifier).login(username);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Por favor, completa los campos')),
@@ -37,16 +37,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
-          child:  Padding(
-          padding: const EdgeInsets.only(left: 32, right: 32, top: 16),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 32, right: 32, top: 16),
             child: SizedBox(
               width: double.infinity,
               child: Column(
@@ -54,18 +52,28 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 children: [
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SelectorLanguages()
-                    ],
+                    children: [SelectorLanguages()],
                   ),
                   const SizedBox(height: 80),
                   _Header(),
                   const SizedBox(height: 80),
-                  RunnaInput(label: AppLocalizations.of(context)!.username, hint: "John_Doe", controller: _userController,),
+                  RunnaInput(
+                    label: AppLocalizations.of(context)!.username,
+                    hint: "John_Doe",
+                    controller: _userController,
+                  ),
                   const SizedBox(height: 20),
-                  RunnaInput(label: AppLocalizations.of(context)!.password, hint: "********", obscureText: true, controller: _passwordController,),
+                  RunnaInput(
+                    label: AppLocalizations.of(context)!.password,
+                    hint: "********",
+                    obscureText: true,
+                    controller: _passwordController,
+                  ),
                   const SizedBox(height: 40),
-                  MainButton(onTap: onTapLogin, text: AppLocalizations.of(context)!.login,)
+                  MainButton(
+                    onTap: onTapLogin,
+                    text: AppLocalizations.of(context)!.login,
+                  ),
                 ],
               ),
             ),
@@ -76,11 +84,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Text _Header() {
-    return Text(AppLocalizations.of(context)!.welcome, 
-      style: const TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-      ),
+    return Text(
+      AppLocalizations.of(context)!.welcome,
+      style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
     );
   }
 }

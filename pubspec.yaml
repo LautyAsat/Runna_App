@@ -11,8 +11,8 @@ dependencies:
     sdk: flutter
 
   freezed_annotation: ^2.4.1
-  riverpod_annotation: ^2.3.5
-  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.6.1
+  flutter_riverpod: ^2.6.1
 
   flutter_localizations:
     sdk: flutter
@@ -31,7 +31,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   build_runner: ^2.4.13
   freezed: ^2.5.7
-  riverpod_generator: ^2.6.3
+  riverpod_generator: ^2.6.1
   json_serializable: ^6.9.3
 
 flutter:
