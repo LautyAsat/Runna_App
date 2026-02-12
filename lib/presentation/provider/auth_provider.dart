@@ -21,8 +21,21 @@ class AuthNotifier extends _$AuthNotifier {
     state = const AuthState.unauthenticated();
   }
 
-  void login(String username) {
-    state = AuthState.authenticated(user: username);
+  Future<bool> login(String username, String password) async {
+    state = const AuthState.loading();
+
+    // Simulamos delay de red
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    // Por ahora solo aceptamos "test"/"123456"
+    if (username == "test" && password == "123456") {
+      state = AuthState.authenticated(user: username);
+      return true;
+    }
+
+    // Si falla, volvemos a unauthenticated (sin error, eso lo maneja el form)
+    state = const AuthState.unauthenticated();
+    return false;
   }
 
   void singUp() {

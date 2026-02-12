@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:runna/core/router/app_router.dart';
 import 'package:runna/l10n/app_localizations.dart';
-import 'package:runna/presentation/provider/auth_provider.dart';
+import 'package:runna/presentation/provider/login_form_provider.dart';
 import 'package:runna/presentation/widgets/custom_main_button.dart';
 import 'package:runna/presentation/widgets/custom_text_field.dart';
 import 'package:runna/presentation/widgets/selector_languages.dart';
@@ -27,16 +26,30 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     super.dispose();
   }
 
-  void onTapLogin() {
-    final username = _userController.text;
-    final password = _passwordController.text;
+  Future<void> onTapLogin() async {
+    final formNotifier = ref.read(loginFormNotifierProvider.notifier);
+    final l10n = AppLocalizations.of(context)!;
 
-    if (username.isNotEmpty && password.isNotEmpty) {
-      ref.read(authNotifierProvider.notifier).login(username);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(AppLocalizations.of(context)!.complete_fields)),
-      );
+    // Limpiamos errores al intentar de nuevo
+    formNotifier.clearFieldErrors();
+
+    // Intentamos hacer login pasando los valores y mensajes traducidos
+    final success = await formNotifier.submit(
+      _userController.text,
+      _passwordController.text,
+      emptyUsernameError: l10n.error_empty_username,
+      emptyPasswordError: l10n.error_empty_password,
+      invalidCredentialsError: l10n.error_invalid_credentials,
+    );
+
+    if (!success && mounted) {
+      // Si falla, mostramos el error general en un snackbar
+      final formState = ref.read(loginFormNotifierProvider);
+      if (formState.generalError != null) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(formState.generalError!, style: TextStyle(color: Colors.white, fontFamily: GoogleFonts.inter().fontFamily),)));
+      }
     }
   }
 
@@ -46,6 +59,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Escuchamos el estado del form para mostrar errores en los campos
+    final formState = ref.watch(loginFormNotifierProvider);
+
     return Scaffold(
       appBar: AppBar(actions: const [SelectorLanguages()]),
       body: SafeArea(
@@ -65,6 +81,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     label: AppLocalizations.of(context)!.username,
                     hint: "John_Doe",
                     controller: _userController,
+                    errorText: formState.usernameError,
                   ),
                   const SizedBox(height: 20),
                   RunnaInput(
@@ -72,11 +89,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     hint: "********",
                     obscureText: true,
                     controller: _passwordController,
+                    errorText: formState.passwordError,
                   ),
                   const SizedBox(height: 40),
                   MainButton(
-                    onTap: onTapLogin,
-                    text: AppLocalizations.of(context)!.login,
+                    onTap: formState.isLoading ? null : onTapLogin,
+                    text: formState.isLoading
+                        ? AppLocalizations.of(context)!.loading
+                        : AppLocalizations.of(context)!.login,
                   ),
                   const SizedBox(height: 20),
                   divider(),

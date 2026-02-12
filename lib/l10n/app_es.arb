@@ -4,5 +4,9 @@
   "password": "Contraseña",
   "complete_fields": "Por favor, completa los campos",
   "login": "Iniciar sesión",
-  "sing_up": "Registrarse"
+  "sing_up": "Registrarse",
+  "loading": "Cargando...",
+  "error_empty_username": "El usuario no puede estar vacío",
+  "error_empty_password": "La contraseña no puede estar vacía",
+  "error_invalid_credentials": "Usuario o contraseña incorrectos"
 }

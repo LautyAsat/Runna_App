@@ -133,6 +133,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign Up'**
   String get sing_up;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @error_empty_username.
+  ///
+  /// In en, this message translates to:
+  /// **'Username cannot be empty'**
+  String get error_empty_username;
+
+  /// No description provided for @error_empty_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password cannot be empty'**
+  String get error_empty_password;
+
+  /// No description provided for @error_invalid_credentials.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid username or password'**
+  String get error_invalid_credentials;
 }
 
 class _AppLocalizationsDelegate

@@ -5,13 +5,15 @@ class RunnaInput extends StatelessWidget {
   final String hint;
   final bool? obscureText;
   final TextEditingController controller;
+  final String? errorText;
 
   const RunnaInput({
     super.key,
     required this.label,
     required this.hint,
     required this.controller,
-    this.obscureText = false
+    this.obscureText = false,
+    this.errorText,
   });
 
   @override
@@ -19,7 +21,7 @@ class RunnaInput extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: Theme.of(context).textTheme.labelSmall,),
+        Text(label, style: Theme.of(context).textTheme.labelSmall),
         const SizedBox(height: 10),
         SizedBox(
           width: double.infinity,
@@ -29,11 +31,12 @@ class RunnaInput extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium,
             decoration: InputDecoration(
               labelText: hint,
-              floatingLabelBehavior: FloatingLabelBehavior.never
+              floatingLabelBehavior: FloatingLabelBehavior.never,
+              errorText: errorText,
             ),
           ),
         ),
-      ]
+      ],
     );
   }
 }

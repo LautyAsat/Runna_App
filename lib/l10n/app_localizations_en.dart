@@ -25,4 +25,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sing_up => 'Sign Up';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get error_empty_username => 'Username cannot be empty';
+
+  @override
+  String get error_empty_password => 'Password cannot be empty';
+
+  @override
+  String get error_invalid_credentials => 'Invalid username or password';
 }

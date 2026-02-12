@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_provider.dart';
+part of 'login_form_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authNotifierHash() => r'02fbb86b39a12a3d5b780f0ab441139692808bb7';
+String _$loginFormNotifierHash() => r'22e7736a54b844c51b1e96d77d650ba8f744453e';
 
-/// See also [AuthNotifier].
-@ProviderFor(AuthNotifier)
-final authNotifierProvider =
-    AutoDisposeNotifierProvider<AuthNotifier, AuthState>.internal(
-      AuthNotifier.new,
-      name: r'authNotifierProvider',
+/// See also [LoginFormNotifier].
+@ProviderFor(LoginFormNotifier)
+final loginFormNotifierProvider =
+    AutoDisposeNotifierProvider<LoginFormNotifier, LoginFormState>.internal(
+      LoginFormNotifier.new,
+      name: r'loginFormNotifierProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$authNotifierHash,
+          : _$loginFormNotifierHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$AuthNotifier = AutoDisposeNotifier<AuthState>;
+typedef _$LoginFormNotifier = AutoDisposeNotifier<LoginFormState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

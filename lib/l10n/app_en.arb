@@ -4,5 +4,9 @@
   "password": "Password",
   "complete_fields": "Please fill in all fields",
   "login": "Login",
-  "sing_up": "Sign Up"
+  "sing_up": "Sign Up",
+  "loading": "Loading...",
+  "error_empty_username": "Username cannot be empty",
+  "error_empty_password": "Password cannot be empty",
+  "error_invalid_credentials": "Invalid username or password"
 }
