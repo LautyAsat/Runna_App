@@ -1,6 +1,8 @@
 {
-  "welcome": "Welcome to RUNNA",
+  "welcome": "Welcome to ",
   "username": "Username",
   "password": "Password",
-  "login": "Login"
+  "complete_fields": "Please fill in all fields",
+  "login": "Login",
+  "sing_up": "Sign Up"
 }

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:runna/core/router/app_router.dart';
 import 'package:runna/l10n/app_localizations.dart';
 import 'package:runna/presentation/provider/auth_provider.dart';
 import 'package:runna/presentation/widgets/custom_main_button.dart';
@@ -32,31 +35,32 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ref.read(authNotifierProvider.notifier).login(username);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Por favor, completa los campos')),
+        SnackBar(content: Text(AppLocalizations.of(context)!.complete_fields)),
       );
     }
+  }
+
+  void onTapSingUp() {
+    context.go('/register');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(actions: const [SelectorLanguages()]),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
-            padding: const EdgeInsets.only(left: 32, right: 32, top: 16),
+            padding: const EdgeInsets.only(left: 48, right: 48, top: 8),
             child: SizedBox(
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [SelectorLanguages()],
-                  ),
-                  const SizedBox(height: 80),
-                  _Header(),
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 20),
+                  _header(),
+                  const SizedBox(height: 40),
                   RunnaInput(
                     label: AppLocalizations.of(context)!.username,
                     hint: "John_Doe",
@@ -74,6 +78,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     onTap: onTapLogin,
                     text: AppLocalizations.of(context)!.login,
                   ),
+                  const SizedBox(height: 20),
+                  divider(),
+                  const SizedBox(height: 20),
+                  MainButton(
+                    onTap: onTapSingUp,
+                    text: AppLocalizations.of(context)!.sing_up,
+                    isSecondary: true,
+                  ),
                 ],
               ),
             ),
@@ -83,10 +95,45 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
   }
 
-  Text _Header() {
-    return Text(
-      AppLocalizations.of(context)!.welcome,
-      style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+  Row divider() {
+    return const Row(
+      children: [
+        Expanded(child: Divider(thickness: 1, color: Colors.grey)),
+
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Text("O", style: TextStyle(color: Colors.grey)),
+        ),
+
+        Expanded(child: Divider(thickness: 1, color: Colors.grey)),
+      ],
+    );
+  }
+
+  Column _header() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          AppLocalizations.of(context)!.welcome,
+          style: TextStyle(
+            fontSize: 52,
+            fontWeight: FontWeight.bold,
+            height: 1,
+            fontFamily: GoogleFonts.caveat().fontFamily,
+          ),
+        ),
+        Text(
+          "Runna",
+          style: TextStyle(
+            fontSize: 64,
+            fontWeight: FontWeight.bold,
+            fontFamily: GoogleFonts.caveat().fontFamily,
+            decoration: TextDecoration.underline,
+          ),
+        ),
+      ],
     );
   }
 }

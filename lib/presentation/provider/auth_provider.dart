@@ -25,6 +25,15 @@ class AuthNotifier extends _$AuthNotifier {
     state = AuthState.authenticated(user: username);
   }
 
+  void singUp() {
+    // Aquí iría la lógica de registro, por ahora solo simulamos un proceso
+    state = const AuthState.loading();
+
+    Future.delayed(const Duration(seconds: 2), () {
+      state = const AuthState.unauthenticated();
+    });
+  }
+
   void logout() {
     state = const AuthState.unauthenticated();
   }

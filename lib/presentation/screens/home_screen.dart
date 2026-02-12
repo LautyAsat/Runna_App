@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:runna/data/models/team.dart';
 import 'package:runna/data/models/territory.dart';
@@ -15,7 +16,7 @@ class HomeScreen extends ConsumerWidget {
     final homeState = ref.watch(homeNotifierProvider);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Runna')),
+      appBar: AppBar(title: Text('Runna', style: GoogleFonts.caveat())),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),

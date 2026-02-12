@@ -22,13 +22,14 @@ class RunnaInput extends StatelessWidget {
         Text(label, style: Theme.of(context).textTheme.labelSmall,),
         const SizedBox(height: 10),
         SizedBox(
-          width: 300,
+          width: double.infinity,
           child: TextField(
             controller: controller,
             obscureText: obscureText ?? false,
             style: Theme.of(context).textTheme.bodyMedium,
             decoration: InputDecoration(
               labelText: hint,
+              floatingLabelBehavior: FloatingLabelBehavior.never
             ),
           ),
         ),

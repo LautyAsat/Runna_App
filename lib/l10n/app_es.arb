@@ -1,6 +1,8 @@
 {
-  "welcome": "Bienvenido a RUNNA",
+  "welcome": "Bienvenido a ",
   "username": "Nombre de Usuario",
   "password": "Contraseña",
-  "login": "Iniciar sesión"
+  "complete_fields": "Por favor, completa los campos",
+  "login": "Iniciar sesión",
+  "sing_up": "Registrarse"
 }

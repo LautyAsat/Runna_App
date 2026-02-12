@@ -9,7 +9,7 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get welcome => 'Bienvenido a RUNNA';
+  String get welcome => 'Bienvenido a ';
 
   @override
   String get username => 'Nombre de Usuario';
@@ -18,5 +18,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get password => 'Contraseña';
 
   @override
+  String get complete_fields => 'Por favor, completa los campos';
+
+  @override
   String get login => 'Iniciar sesión';
+
+  @override
+  String get sing_up => 'Registrarse';
 }

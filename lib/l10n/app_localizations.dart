@@ -101,7 +101,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcome.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to RUNNA'**
+  /// **'Welcome to '**
   String get welcome;
 
   /// No description provided for @username.
@@ -116,11 +116,23 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get password;
 
+  /// No description provided for @complete_fields.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill in all fields'**
+  String get complete_fields;
+
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// No description provided for @sing_up.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get sing_up;
 }
 
 class _AppLocalizationsDelegate
