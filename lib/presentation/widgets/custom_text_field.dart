@@ -6,6 +6,7 @@ class RunnaInput extends StatelessWidget {
   final bool? obscureText;
   final TextEditingController controller;
   final String? errorText;
+  final String? Function(String?)? validator;
 
   const RunnaInput({
     super.key,
@@ -14,6 +15,7 @@ class RunnaInput extends StatelessWidget {
     required this.controller,
     this.obscureText = false,
     this.errorText,
+    this.validator
   });
 
   @override
@@ -25,7 +27,8 @@ class RunnaInput extends StatelessWidget {
         const SizedBox(height: 10),
         SizedBox(
           width: double.infinity,
-          child: TextField(
+          child: TextFormField(
+            validator: validator,
             controller: controller,
             obscureText: obscureText ?? false,
             style: Theme.of(context).textTheme.bodyMedium,

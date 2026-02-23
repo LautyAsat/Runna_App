@@ -8,5 +8,8 @@
   "loading": "Loading...",
   "error_empty_username": "Username cannot be empty",
   "error_empty_password": "Password cannot be empty",
-  "error_invalid_credentials": "Invalid username or password"
+  "error_short_password": "Password is too short",
+  "error_user_not_exists": "Username doesn't exists",
+  "error_invalid_credentials": "Invalid username or password",
+  "error_unexpected": "Unexpected error"
 }

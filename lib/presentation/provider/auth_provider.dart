@@ -1,10 +1,14 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:runna/data/repositories/auth_repository.dart';
 import 'package:runna/presentation/state/auth_state.dart';
 
 part 'auth_provider.g.dart';
 
 @riverpod
 class AuthNotifier extends _$AuthNotifier {
+  final _storage = const FlutterSecureStorage();
+  
   @override
   AuthState build() {
     // Inicializamos verificando autenticación
@@ -15,31 +19,32 @@ class AuthNotifier extends _$AuthNotifier {
   Future<void> checkAuth() async {
     state = const AuthState.loading();
 
-    // Leemos secureStorage/sharedPreferences para ver si el usuario ya esta logueado
-    await Future.delayed(const Duration(seconds: 2));
-
-    state = const AuthState.unauthenticated();
+    final token = await _storage.read(key: "jwt_token");
+    
+    token == null 
+      ? state = const AuthState.unauthenticated()
+      : state = AuthState.authenticated(token: token);
   }
 
-  Future<bool> login(String username, String password) async {
+  Future<void> login(String username, String password) async {
     state = const AuthState.loading();
 
-    // Simulamos delay de red
-    await Future.delayed(const Duration(milliseconds: 500));
+    try{
+      
+      final repo = ref.read(authRepositoryProvider);
 
-    // Por ahora solo aceptamos "test"/"123456"
-    if (username == "test" && password == "123456") {
-      state = AuthState.authenticated(user: username);
-      return true;
+      final token = await repo.login(username, password);
+
+      state = AuthState.authenticated(token: token);
+
+    }catch(e){
+      state = const AuthState.unauthenticated();
+
+      rethrow;
     }
-
-    // Si falla, volvemos a unauthenticated (sin error, eso lo maneja el form)
-    state = const AuthState.unauthenticated();
-    return false;
   }
 
   void singUp() {
-    // Aquí iría la lógica de registro, por ahora solo simulamos un proceso
     state = const AuthState.loading();
 
     Future.delayed(const Duration(seconds: 2), () {
@@ -47,7 +52,8 @@ class AuthNotifier extends _$AuthNotifier {
     });
   }
 
-  void logout() {
+  void logout() async {
+    await ref.read(authRepositoryProvider).logout();
     state = const AuthState.unauthenticated();
   }
 }

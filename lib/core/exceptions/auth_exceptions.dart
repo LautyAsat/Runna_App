@@ -1,14 +1,21 @@
 // excepciones.dart
 
-class AuthException implements Exception {
-  final String message;
-  AuthException(this.message);
+abstract class AuthException implements Exception {}
+
+class ValidationException extends AuthException {
+  final Map<String, String> errors;
+
+  ValidationException(this.errors);
+
+  @override
+  String toString() => 'ValidationException: $errors';
 }
 
-class UserNotFoundException extends AuthException {
-  UserNotFoundException() : super("User not found");
-}
+class GlobalAuthException extends AuthException {
+  final String messageKey;
 
-class WrongPasswordException extends AuthException {
-  WrongPasswordException() : super("Wrong password");
+  GlobalAuthException(this.messageKey);
+
+  @override
+  String toString() => 'GlobalAuthException: $messageKey';
 }

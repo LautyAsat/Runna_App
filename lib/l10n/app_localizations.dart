@@ -152,11 +152,29 @@ abstract class AppLocalizations {
   /// **'Password cannot be empty'**
   String get error_empty_password;
 
+  /// No description provided for @error_short_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is too short'**
+  String get error_short_password;
+
+  /// No description provided for @error_user_not_exists.
+  ///
+  /// In en, this message translates to:
+  /// **'Username doesn\'t exists'**
+  String get error_user_not_exists;
+
   /// No description provided for @error_invalid_credentials.
   ///
   /// In en, this message translates to:
   /// **'Invalid username or password'**
   String get error_invalid_credentials;
+
+  /// No description provided for @error_unexpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Unexpected error'**
+  String get error_unexpected;
 }
 
 class _AppLocalizationsDelegate

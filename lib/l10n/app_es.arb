@@ -8,5 +8,8 @@
   "loading": "Cargando...",
   "error_empty_username": "El usuario no puede estar vacío",
   "error_empty_password": "La contraseña no puede estar vacía",
-  "error_invalid_credentials": "Usuario o contraseña incorrectos"
+  "error_short_password": "La constraseña es muy corta",
+  "error_user_not_exists": "El usuario no existe",
+  "error_invalid_credentials": "Usuario o contraseña incorrectos",
+  "error_unexpected": "Error desconocido"
 }

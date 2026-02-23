@@ -12,8 +12,10 @@ class HomeNotifier extends _$HomeNotifier {
   @override
   HomeState build() {
     // Auto-inicialización: cargamos territorios al crear el provider
-    Future.microtask(() => fetchTerritories());
-    return const HomeState.loading();
+    
+    return const HomeState.success([]);
+    // Future.microtask(() => fetchTerritories());
+    // return const HomeState.loading();
   }
 
   Future<void> fetchTerritories() async {

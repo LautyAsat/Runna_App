@@ -21,21 +21,21 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String user) authenticated,
+    required TResult Function(String token) authenticated,
     required TResult Function() unauthenticated,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String user)? authenticated,
+    TResult? Function(String token)? authenticated,
     TResult? Function()? unauthenticated,
   }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String user)? authenticated,
+    TResult Function(String token)? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) => throw _privateConstructorUsedError;
@@ -134,7 +134,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String user) authenticated,
+    required TResult Function(String token) authenticated,
     required TResult Function() unauthenticated,
   }) {
     return initial();
@@ -145,7 +145,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String user)? authenticated,
+    TResult? Function(String token)? authenticated,
     TResult? Function()? unauthenticated,
   }) {
     return initial?.call();
@@ -156,7 +156,7 @@ class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String user)? authenticated,
+    TResult Function(String token)? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -259,7 +259,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String user) authenticated,
+    required TResult Function(String token) authenticated,
     required TResult Function() unauthenticated,
   }) {
     return loading();
@@ -270,7 +270,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String user)? authenticated,
+    TResult? Function(String token)? authenticated,
     TResult? Function()? unauthenticated,
   }) {
     return loading?.call();
@@ -281,7 +281,7 @@ class _$LoadingImpl with DiagnosticableTreeMixin implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String user)? authenticated,
+    TResult Function(String token)? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
@@ -340,7 +340,7 @@ abstract class _$$AuthenticatedImplCopyWith<$Res> {
     $Res Function(_$AuthenticatedImpl) then,
   ) = __$$AuthenticatedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String user});
+  $Res call({String token});
 }
 
 /// @nodoc
@@ -356,12 +356,12 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({Object? user = null}) {
+  $Res call({Object? token = null}) {
     return _then(
       _$AuthenticatedImpl(
-        user: null == user
-            ? _value.user
-            : user // ignore: cast_nullable_to_non_nullable
+        token: null == token
+            ? _value.token
+            : token // ignore: cast_nullable_to_non_nullable
                   as String,
       ),
     );
@@ -373,14 +373,14 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
 class _$AuthenticatedImpl
     with DiagnosticableTreeMixin
     implements _Authenticated {
-  const _$AuthenticatedImpl({required this.user});
+  const _$AuthenticatedImpl({required this.token});
 
   @override
-  final String user;
+  final String token;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthState.authenticated(user: $user)';
+    return 'AuthState.authenticated(token: $token)';
   }
 
   @override
@@ -388,7 +388,7 @@ class _$AuthenticatedImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AuthState.authenticated'))
-      ..add(DiagnosticsProperty('user', user));
+      ..add(DiagnosticsProperty('token', token));
   }
 
   @override
@@ -396,11 +396,11 @@ class _$AuthenticatedImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AuthenticatedImpl &&
-            (identical(other.user, user) || other.user == user));
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user);
+  int get hashCode => Object.hash(runtimeType, token);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -415,10 +415,10 @@ class _$AuthenticatedImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String user) authenticated,
+    required TResult Function(String token) authenticated,
     required TResult Function() unauthenticated,
   }) {
-    return authenticated(user);
+    return authenticated(token);
   }
 
   @override
@@ -426,10 +426,10 @@ class _$AuthenticatedImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String user)? authenticated,
+    TResult? Function(String token)? authenticated,
     TResult? Function()? unauthenticated,
   }) {
-    return authenticated?.call(user);
+    return authenticated?.call(token);
   }
 
   @override
@@ -437,12 +437,12 @@ class _$AuthenticatedImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String user)? authenticated,
+    TResult Function(String token)? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {
     if (authenticated != null) {
-      return authenticated(user);
+      return authenticated(token);
     }
     return orElse();
   }
@@ -486,10 +486,10 @@ class _$AuthenticatedImpl
 }
 
 abstract class _Authenticated implements AuthState {
-  const factory _Authenticated({required final String user}) =
+  const factory _Authenticated({required final String token}) =
       _$AuthenticatedImpl;
 
-  String get user;
+  String get token;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -551,7 +551,7 @@ class _$UnauthenticatedImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String user) authenticated,
+    required TResult Function(String token) authenticated,
     required TResult Function() unauthenticated,
   }) {
     return unauthenticated();
@@ -562,7 +562,7 @@ class _$UnauthenticatedImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String user)? authenticated,
+    TResult? Function(String token)? authenticated,
     TResult? Function()? unauthenticated,
   }) {
     return unauthenticated?.call();
@@ -573,7 +573,7 @@ class _$UnauthenticatedImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String user)? authenticated,
+    TResult Function(String token)? authenticated,
     TResult Function()? unauthenticated,
     required TResult orElse(),
   }) {

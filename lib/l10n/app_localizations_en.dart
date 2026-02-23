@@ -36,5 +36,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get error_empty_password => 'Password cannot be empty';
 
   @override
+  String get error_short_password => 'Password is too short';
+
+  @override
+  String get error_user_not_exists => 'Username doesn\'t exists';
+
+  @override
   String get error_invalid_credentials => 'Invalid username or password';
+
+  @override
+  String get error_unexpected => 'Unexpected error';
 }
